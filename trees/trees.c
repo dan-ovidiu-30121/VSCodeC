@@ -1,61 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
-typedef struct treeNode
-{
-    int value;
-    struct treeNode *left, *right;
-} treeNode;
-
-treeNode *createNode(int value)
-{
-    treeNode *result = malloc(sizeof(treeNode));
-    if (result != NULL)
-    {
-        result->left = NULL;
-        result->right = NULL;
-        result->value = value;
-    }
-    return result;
-}
-void printtabs(int numtabs)
-{
-    for (int i = 0; i < numtabs; i++)
-    {
-        printf("\t");
-    }
-}
-void printTree(treeNode *root, int level)
-{
-    if (root == NULL)
-    {
-        printtabs(level);
-        printf("---<empty>---\n");
-        return;
-    }
-    printtabs(level);
-    printf("Value = %d\n", root->value);
-    printtabs(level);
-    printf("left\n");
-
-    printTree(root->left, level + 1);
-    printtabs(level);
-
-    printf("right\n");
-    printTree(root->right, level + 1);
-    printtabs(level);
-}
-bool isSameTree(treeNode *p, treeNode *q)
-{
-    if (p == NULL && q == NULL)
-        return true;
-    if (p == NULL || q == NULL)
-        return false;
-    if (p->value != q->value)
-        return false;
-    return (isSameTree(p->right, q->right) && isSameTree(p->left, q->left));
-}
+#include "trees.h"
 int main()
 {
     treeNode *n1 = createNode(10);
@@ -80,9 +26,11 @@ int main()
     a3->left = a4;
     a3->right = a5;
     if (isSameTree(n1, a1) == true)
-        printf("Same trees");
+        printf("Same trees\n");
     else
-        printf("Different trees");
+        printf("Different trees\n");
+    invertTree(n1);
+    printTree(n1,0);
 
     free(n1);
     free(n2);
@@ -95,7 +43,5 @@ int main()
     free(a3);
     free(a4);
     free(a5);
-
-
     return 0;
 }

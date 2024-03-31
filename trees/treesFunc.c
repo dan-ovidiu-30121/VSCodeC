@@ -64,3 +64,16 @@ treeNode* invertTree(treeNode* root) {
     invertTree(root->right);
     return root;
 }
+bool isMirror(treeNode *node1, treeNode *node2)
+{
+    if(node1 == NULL && node2 == NULL)
+      return true;
+    if(node1 == NULL || node2 == NULL)
+      return false;
+    return ((node1->value==node2->value)&&isMirror(node1->left,node2->right)&&isMirror(node1->right,node2->left));
+}
+bool isSymmetric(treeNode* root) {
+    if(root == NULL)
+      return NULL;
+    return isMirror(root->left,root->right);
+}

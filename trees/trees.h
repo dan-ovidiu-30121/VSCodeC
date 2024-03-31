@@ -14,5 +14,7 @@ void printtabs(int numtabs);
 void printTree(treeNode *root, int level);
 bool isSameTree(treeNode *p, treeNode *q);
 treeNode* invertTree(treeNode* root);
+bool isMirror(treeNode *node1, treeNode *node2);
+bool isSymmetric(treeNode* root);
 
 #endif 
